@@ -7,11 +7,15 @@
  * trimProperties({ name: '  jane  ' }) // returns a new object { name: 'jane' }
  */
 function trimProperties(obj) {
-  Object.keys(obj).forEach(key => {
-    obj[key] = obj[key].trim()
-  })
-  return obj
+  const newObj = { ...obj }
+    Object.keys(newObj).forEach(key => {
+      newObj[key] = newObj[key].trim()
+    })
+    return newObj
 }
+const obj = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+trimProperties(obj)
+console.log("After", obj)
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
  * @param {object} obj - an object with properties that are strings
@@ -21,11 +25,10 @@ function trimProperties(obj) {
  * trimPropertiesMutation({ name: '  jane  ' }) // returns the object mutated in place { name: 'jane' }
  */
 function trimPropertiesMutation(obj) {
-  const newObj = {...obj}
-    Object.keys(newObj).forEach(key => {
-      newObj[key] = newObj[key].trim()
-    })
-    return newObj
+  Object.keys(obj).forEach(key => {
+    obj[key] = obj[key].trim()
+  })
+  return obj
 }
 
 /**
