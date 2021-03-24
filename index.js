@@ -13,9 +13,6 @@ function trimProperties(obj) {
     })
     return newObj
 }
-const obj = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
-trimProperties(obj)
-console.log("After", obj)
 /**
  * [Exercise 2] trimPropertiesMutation trims in place the properties of an object
  * @param {object} obj - an object with properties that are strings
@@ -40,7 +37,7 @@ function trimPropertiesMutation(obj) {
  * findLargestInteger([2, 1, 7, 3, 14, 7]) // returns 14
  */
 function findLargestInteger(integers) {
-  // ✨ implement
+  return Math.max(...integers)
 }
 
 class Counter {
