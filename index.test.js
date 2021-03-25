@@ -49,16 +49,20 @@ describe('[Exercise 3] findLargestInteger', () => {
 describe('[Exercise 4] Counter', () => {
   let counter
   beforeEach(() => {
-    counter = new utils.Counter(3) // each test must start with a fresh couter
+    counter = new utils.Counter(3) // each test must start with a fresh counter
   })
   it('[6] the FIRST CALL of counter.countDown returns the initial count', () => {
-    // ✨ test away
+    expect(counter.countDown()).toEqual(3)
   })
   it('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {
-    // ✨ test away
+    counter.countDown()
+    expect(counter.countDown()).toEqual(2)
   })
   it('[8] the count eventually reaches zero but does not go below zero', () => {
-    // ✨ test away
+    for (let i = 0; i < 5; i++) {
+      counter.countDown()
+    }
+    expect(counter.countDown()).toEqual(0)
   })
 })
 
