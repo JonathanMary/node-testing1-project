@@ -76,7 +76,8 @@ class Seasons {
    * [Exercise 5A] Seasons creates a seasons object
    */
   constructor() {
-    // ✨ initialize whatever properties are needed
+    this.seasons = ["spring", "summer", "fall", "winter"]
+    this.count = 0
   }
 
   /**
@@ -92,7 +93,8 @@ class Seasons {
    * seasons.next() // returns "summer"
    */
   next() {
-    // ✨ implement
+    this.count ++
+    return this.seasons[this.count % 4]
   }
 }
 
