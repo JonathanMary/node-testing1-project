@@ -1,46 +1,68 @@
 const utils = require('./index')
 
 describe('[Exercise 1] trimProperties', () => {
+  let input
+  let expected
+  beforeEach(() => {
+    input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
+  })
   it('[1] returns an object with the properties trimmed', () => {
     // EXAMPLE
-    const input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
-    const expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
     const actual = utils.trimProperties(input)
     expect(actual).toEqual(expected)
   })
   it('[2] returns a copy, leaving the original object intact', () => {
-    // ✨ test away
+    utils.trimProperties(input)
+    expect(input).not.toEqual(expected)
+    expect(input).toEqual({ foo: '  foo ', bar: 'bar ', baz: ' baz' })
   })
 })
 
 describe('[Exercise 2] trimPropertiesMutation', () => {
+  let input
+  let expected
+  beforeEach(() => {
+    input = { foo: '  foo ', bar: 'bar ', baz: ' baz' }
+    expected = { foo: 'foo', bar: 'bar', baz: 'baz' }
+  })
   it('[3] returns an object with the properties trimmed', () => {
-    // ✨ test away
+    const actual = utils.trimPropertiesMutation(input)
+    expect(actual).toEqual(expected)    
   })
   it('[4] the object returned is the exact same one we passed in', () => {
-    // ✨ test away
+    utils.trimPropertiesMutation(input)
+    expect(input).toEqual(expected)
+    expect(input).not.toEqual({ foo: '  foo ', bar: 'bar ', baz: ' baz' })
   })
 })
 
 describe('[Exercise 3] findLargestInteger', () => {
   it('[5] returns the largest number in an array of numbers', () => {
-    // ✨ test away
+    const input = [2, 1, 7, 3, 14, 7]
+    const expected = 14
+    const actual = utils.findLargestInteger(input)
+    expect(actual).toEqual(expected)
   })
 })
 
 describe('[Exercise 4] Counter', () => {
   let counter
   beforeEach(() => {
-    counter = new utils.Counter(3) // each test must start with a fresh couter
+    counter = new utils.Counter(3) // each test must start with a fresh counter
   })
   it('[6] the FIRST CALL of counter.countDown returns the initial count', () => {
-    // ✨ test away
+    expect(counter.countDown()).toEqual(3)
   })
   it('[7] the SECOND CALL of counter.countDown returns the initial count minus one', () => {
-    // ✨ test away
+    counter.countDown()
+    expect(counter.countDown()).toEqual(2)
   })
   it('[8] the count eventually reaches zero but does not go below zero', () => {
-    // ✨ test away
+    for (let i = 0; i < 5; i++) {
+      counter.countDown()
+    }
+    expect(counter.countDown()).toEqual(0)
   })
 })
 
@@ -50,22 +72,35 @@ describe('[Exercise 5] Seasons', () => {
     seasons = new utils.Seasons() // each test must start with fresh seasons
   })
   it('[9] the FIRST call of seasons.next returns "summer"', () => {
-    // ✨ test away
+    expect(seasons.next()).toBe("summer")
   })
   it('[10] the SECOND call of seasons.next returns "fall"', () => {
-    // ✨ test away
+    seasons.next()
+    expect(seasons.next()).toBe("fall")
   })
   it('[11] the THIRD call of seasons.next returns "winter"', () => {
-    // ✨ test away
+    for (let i = 0; i < 2; i++) {
+      seasons.next()
+    }
+    expect(seasons.next()).toBe("winter")
   })
   it('[12] the FOURTH call of seasons.next returns "spring"', () => {
-    // ✨ test away
+    for (let i = 0; i < 3; i++) {
+      seasons.next()
+    }
+    expect(seasons.next()).toBe("spring")
   })
   it('[13] the FIFTH call of seasons.next returns again "summer"', () => {
-    // ✨ test away
+    for (let i = 0; i < 4; i++) {
+      seasons.next()
+    }
+    expect(seasons.next()).toBe("summer")
   })
   it('[14] the 40th call of seasons.next returns "spring"', () => {
-    // ✨ test away
+    for (let i = 0; i < 39; i++) {
+      seasons.next()
+    }
+    expect(seasons.next()).toBe("spring")
   })
 })
 
@@ -75,16 +110,29 @@ describe('[Exercise 6] Car', () => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
   it('[15] driving the car returns the updated odometer', () => {
-    // ✨ test away
+    focus.drive(20)
+    focus.drive(50)
+    expect(focus.odometer).toBe(70)
   })
   it('[16] driving the car uses gas', () => {
-    // ✨ test away
+    focus.drive(120)
+    expect(focus.tank).toBe(16)
+    focus.drive(600)
+    expect(focus.tank).toBe(0)
+    expect(focus.odometer).toBe(600)
   })
   it('[17] refueling allows to keep driving', () => {
-    // ✨ test away
+    focus.drive(600)
+    focus.drive(200)
+    expect(focus.odometer).toBe(600)
+    focus.refuel(20)
+    expect(focus.tank).toBe(20)
+    focus.drive(200)
+    expect(focus.odometer).toBe(800)
   })
   it('[18] adding fuel to a full tank has no effect', () => {
-    // ✨ test away
+    focus.refuel(10)
+    expect(focus.tank).toBe(20)
   })
 })
 
